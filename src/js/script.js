@@ -13,11 +13,11 @@
     },
 
     containerOf: {
-        image: '.book__image',
+      image: '.book__image',
     },
 
     imageParams: {
-        id: '.book-id',
+      id: '.book-id',
     },  
   };
     
@@ -57,31 +57,32 @@
     const favoriteBooks = [];
 
     /* make a const with reference to entire image list */
-    const bookContainer = select.listOf.booklist;
+    const imageContainer = document.querySelectorAll(select.containerOf.image);
 
     /* make loop for every image */
-    for(const image of bookContainer){
+    for(const image of imageContainer){
 
-        /* add event listener to every image */
-        image.addEventListener('dblclick', function(event){
-            event.preventDefault();
+      /* add event listener to every image */
+      image.addEventListener('dblclick', function(event){
+        event.preventDefault();
 
-            /* find clickedElement */
-            const clickedElement = this;
+        /* find clickedElement */
+        const clickedElement = this;
 
-            /* add favorite to clickedelement */
-            clickedElement.classList.add('favorite');
+        /* add favorite to clickedelement */
+        clickedElement.classList.add('favorite');
 
-            /* find const with data-id of the image */
-            const bookID = clickedElement.getAttribute('data-id');
+        /* find const with data-id of the image */
+        const bookID = clickedElement.getAttribute('data-id');
 
-            /* push this book to the favorite books array */
-            favoriteBooks.push(bookID);
+        /* push this book to the favorite books array */
+        favoriteBooks.push(bookID);
         
-        });
-    };
+      });
+    }
 
     initActions();
+    
 
 
     
