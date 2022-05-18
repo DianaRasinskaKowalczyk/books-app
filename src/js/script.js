@@ -121,7 +121,7 @@
 
     /* add event listener to filtersContainer */
     filtersContainer.addEventListener('click', function(event){
-      event.preventDefault();
+      // event.preventDefault();
 
       /* find const of clickedElement */
       const clickedElement = event.target;
@@ -136,7 +136,7 @@
           filtersArray.push(clickedElement.value);
               
           /* if uncheckes - remove from array */
-        }else if(!clickedElement.checked){
+        } else /* if(!clickedElement.checked) */{
   
           /* remove bookID from the array */
           const indexOfFilterID = filtersArray.indexOf(clickedElement.value);
