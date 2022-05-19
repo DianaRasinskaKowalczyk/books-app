@@ -55,8 +55,7 @@
   function initActions(){
   
     /* START - list of favorite books */
-    /* make an empty array with favorite books */
-    let favoriteBooks = [];
+ 
   
     /* make a const with reference to entire image list */
     // const imageContainer = document.querySelectorAll(select.containerOf.image);
@@ -114,7 +113,8 @@
     /* START - filtering */
   
     /* make an empty array of filters */
-      
+    /* make an empty array with favorite books */
+    let favoriteBooks = [];
   
     /* find reference to filters */
     const filtersContainer = document.querySelector(select.listOf.filters);
@@ -170,9 +170,9 @@
       }
 
       /* if the filter fits the book - hide it, if not - make it visible */
-      if(shouldBeHidden === true){
-        const bookID = book.id;
-        const bookImageID = document.querySelector(select.containerOf.image + '[data-id="' + bookID + '"]');
+      if(shouldBeHidden){
+        
+        const bookImageID = document.querySelector(select.containerOf.image + '[data-id="' + book.id + '"]');
         
         bookImageID.classList.add('hidden');
       }else{
