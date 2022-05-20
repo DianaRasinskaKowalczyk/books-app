@@ -164,7 +164,7 @@
           }
         }
         console.log(thisBooksList.filters);
-    
+        thisBooksList.filterBooks();
         console.log(thisBooksList.filterBooks);
       });
       /* END - filtering */
