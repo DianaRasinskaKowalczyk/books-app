@@ -32,6 +32,13 @@
   
     /* make a loop for each book from dataSource.books */
     for(const eachBook of dataSource.books){
+
+      /* add const ratingBgc and rangeWidth */
+      const ratingBgc =  determineRatingBgc(eachBook.rating);
+      eachBook.ratingBgc = ratingBgc;
+
+      const ratingWidth = eachBook.ratingBgc * 10;
+      eachBook.ratingWidth = ratingWidth;
           
       /* generate HTML for each book based on template */
       const generatedHTML = templates.bookTemplate(eachBook);
@@ -44,6 +51,8 @@
         
       /* add DOM element to the booklist */
       bookListContainer.appendChild(bookDOMElement);
+
+
     }
   }
   
@@ -152,16 +161,16 @@
   }
   initActions();
   
-
+  /* START function filterBooks */
   /* write function to see if the book should be hiddden or not */
   function filterBooks(){
 
     /* for every book */
     for(const book of dataSource.books){
-
+     
       let shouldBeHidden = false;
 
-      /* for every book check if the filter fits the book */
+      /* for every book check if the filter fits the book - if not, it should be hidden */
       for(const filter of filters){
         if(!book.details[filter]){
           shouldBeHidden = true;
@@ -170,19 +179,37 @@
       }
 
       /* if the filter fits the book - hide it, if not - make it visible */
+      const bookImageID = document.querySelector(select.containerOf.image + '[data-id="' + book.id + '"]');
+
       if(shouldBeHidden){
-        
-        const bookImageID = document.querySelector(select.containerOf.image + '[data-id="' + book.id + '"]');
-        
         bookImageID.classList.add('hidden');
       }else{
         bookImageID.classList.remove('hidden');
       }
 
     }
+    /* END function filterBooks */
 
   }
-  
+
+  /* START function determineRatingBgc */
+  function determineRatingBgc(rating){
+
+    let background = '';
+
+    /* prepare backgrounds for different ratings */
+    if(rating < 6){
+      background = 'linear-gradient(to bottom,  #fefcea 0%, #f1da36 100%)';
+    } else if(rating > 6 && rating <= 8){
+      background = 'linear-gradient(to bottom,  #b4df5b 0%,#b4df5b 100%)';
+    } else if(rating > 8 && rating <= 9){
+      background = 'linear-gradient(to bottom, #299a0b 0%, #299a0b 100%)';
+    } else if(rating > 9){
+      background = 'linear-gradient(to bottom, #ff0084 0%,#ff0084 100%)';
+    }
+    return background;
+  }
+  /* END function determineRatingBgc */
   
   
   
